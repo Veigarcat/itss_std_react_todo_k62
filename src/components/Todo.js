@@ -27,15 +27,23 @@ function Todo() {
     /* テストコード 終了 */
   ]);
 
+  const changeTodoStatusHandler = (key) => {
+    const newItems = items.map(item => {
+      return item.key === key ? {...item, done: !item.done} : item
+    })
+    putItems(newItems)
+  }
+  
   return (
     <div className="panel">
       <div className="panel-heading">
         ITSS ToDoアプリ
       </div>
       {items.map(item => (
-        <TodoItem 
-          key={item.key} 
+        <TodoItem
+          key={item.key}
           item={item}
+          onTodoItemClick={changeTodoStatusHandler}
         />
       ))}
       <div className="panel-block">
